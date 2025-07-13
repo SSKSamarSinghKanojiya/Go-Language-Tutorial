@@ -36,7 +36,7 @@ func generateShortURL(OriginalURl string) string {
 }
 
 func createURL(OriginalURl string) string {
-	shortURL := generateShortURL(OriginalURl)
+	shortURL := generateShortURL(OriginalURl)  //It Convert the original URL string to a byte
 	id := shortURL
 	urlDB[id] = URL{
 		ID:           id,
@@ -48,7 +48,7 @@ func createURL(OriginalURl string) string {
 }
 
 func getURL(id string) (URL, error) {
-	url, ok := urlDB[id]
+	url, ok := urlDB[id]  // Use the short URL as the ID for Simplicity
 	if !ok {
 		return URL{}, errors.New("URL not found")
 	}
