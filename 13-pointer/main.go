@@ -2,33 +2,42 @@ package main
 
 import "fmt"
 
-func modifyValueByReference(num *int){
+// Function that modifies the value using a pointer
+func modifyValueByReference(num *int) {
 	*num = *num + 20
 }
 
+func main() {
+	fmt.Println("=== Pointer Example ===")
 
-func main(){
-	// One way define
-	// var num int 
-	// var ptr *int 
-	// ptr = &num
-
-	// Another way define
+	// -----------------------------
+	// Basic Pointer Declaration
+	// -----------------------------
 	num := 2
-	ptr := &num
-	fmt.Println("Num has value : ", num)
-	fmt.Println("Num has value : ", &num)
-	fmt.Println("Pointer contains : ",ptr)
-	fmt.Println("Data contains through Pointer : ",*ptr)
+	ptr := &num // ptr holds the address of num
+
+	// Print original values
+	fmt.Println("Num has value:", num)
+	fmt.Println("Address of num:", &num)
+	fmt.Println("Pointer contains:", ptr)
+	fmt.Println("Value via pointer (dereference):", *ptr)
 
 	fmt.Println()
-	// By default pointer value is nil
-	var pointer *int 
+
+	// -----------------------------
+	// Nil Pointer Check
+	// -----------------------------
+	var pointer *int // default is nil
 	if pointer == nil {
-		fmt.Println("Pointer is not assigned")
+		fmt.Println("Pointer is not assigned (nil)")
 	}
 
-	value :=5
-	modifyValueByReference(&value)
-	fmt.Println("Value contains : ",value)
+	fmt.Println()
+
+	// -----------------------------
+	// Pass by Reference Example
+	// -----------------------------
+	value := 5
+	modifyValueByReference(&value) // Pass address of value to function
+	fmt.Println("Value after modifyValueByReference():", value)
 }

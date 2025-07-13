@@ -1,29 +1,172 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func main(){
-	for i := 1; i <= 10; i++ {
-		fmt.Println("Number is :",i)
+// =====================
+// Function Section
+// =====================
+
+// divide handles division with error for divide-by-zero.
+func divide(a, b float64) (float64, error) {
+	if b == 0 {
+		return 0, fmt.Errorf("denominator must not be zero")
+	}
+	return a / b, nil
+}
+
+func main() {
+
+	// --------------------------------------
+	// Part 1: Arrays
+	// --------------------------------------
+	fmt.Println("=== Array Example ===")
+
+	var name [5]string
+	name[2] = "Samar"
+	name[0] = "Vishal"
+
+	fmt.Println("Name array content:", name)
+	fmt.Printf("Name Array (quoted): %q\n", name)
+
+	// --------------------------------------
+	// Part 2: Function with Error Handling
+	// --------------------------------------
+	fmt.Println("\n=== Function Error Handling Example ===")
+
+	ans, err := divide(10, 0)
+	if err != nil {
+		fmt.Println("Error occurred during division:", err)
+	} else {
+		fmt.Println("Division result:", ans)
 	}
 
-	counter := 0
+	ans2, err2 := divide(20, 4)
+	if err2 != nil {
+		fmt.Println("Error:", err2)
+	} else {
+		fmt.Println("Division of 20 by 4 is:", ans2)
+	}
 
-	for{
-		fmt.Println("Infinite Lopp",counter)
+	// --------------------------------------
+	// Part 3: Slices
+	// --------------------------------------
+	fmt.Println("\n=== Slice Example ===")
+
+	numbers := make([]int, 3, 5)
+	numbers = append(numbers, 4)
+	numbers = append(numbers, 6)
+
+	fmt.Println("Slice:", numbers)
+	fmt.Println("Length:", len(numbers))
+	fmt.Println("Capacity:", cap(numbers))
+
+	stock := make([]int, 0)
+	fmt.Println("Stock slice:", stock)
+	fmt.Println("Length:", len(stock))
+	fmt.Println("Capacity:", cap(stock))
+
+	// --------------------------------------
+	// Part 4: Conditional Statements
+	// --------------------------------------
+	fmt.Println("\n=== Conditional Statements Example ===")
+
+	x := 21
+	if x > 5 {
+		fmt.Printf("%d is greater than 5\n", x)
+	} else {
+		fmt.Printf("%d is smaller than 5\n", x)
+	}
+
+	z := 10
+	if z > 10 {
+		fmt.Println("z is greater than 10")
+	} else if z > 5 {
+		fmt.Println("z is greater than 5 but smaller than or equal to 10")
+	} else {
+		fmt.Println("z is smaller than or equal to 5")
+	}
+
+	y := 10
+	if x > 5 && (y > 5 || z < 43) {
+		fmt.Println("Hey, How are you?")
+	} else {
+		fmt.Println("Learn programming with Hello World")
+	}
+
+	// --------------------------------------
+	// Part 5: Switch Statements
+	// --------------------------------------
+	fmt.Println("\n=== Switch Statements Example ===")
+
+	day := 3
+	switch day {
+	case 1:
+		fmt.Println("Monday")
+	case 2:
+		fmt.Println("Tuesday")
+	case 3:
+		fmt.Println("Wednesday")
+	default:
+		fmt.Println("Unknown day")
+	}
+
+	month := "January"
+	switch month {
+	case "January", "February", "March":
+		fmt.Println("Winter")
+	case "April", "May", "June":
+		fmt.Println("Spring")
+	case "July", "August", "September":
+		fmt.Println("Monsoon")
+	default:
+		fmt.Println("Other season")
+	}
+
+	temperature := -4
+	switch {
+	case temperature < 0:
+		fmt.Println("Freezing")
+	case temperature >= 0 && temperature < 10:
+		fmt.Println("Cold")
+	case temperature >= 10 && temperature < 20:
+		fmt.Println("Cool")
+	case temperature >= 20 && temperature < 30:
+		fmt.Println("Warm")
+	default:
+		fmt.Println("Hot")
+	}
+
+	// --------------------------------------
+	// Part 6: Loops
+	// --------------------------------------
+	fmt.Println("\n=== Loop Examples ===")
+
+	// For loop with condition
+	for i := 1; i <= 10; i++ {
+		fmt.Println("Number is:", i)
+	}
+
+	// Infinite loop with break
+	counter := 0
+	for {
+		fmt.Println("Infinite Loop:", counter)
 		counter++
-		if  counter == 3 {
+		if counter == 3 {
 			break
 		}
 	}
 
-	numbers := []int{11,22,33,44,55}
-	for index,value := range numbers{
-		fmt.Printf("Index of Number is %d, and value is %d\n",index,value)
+	// For loop using range over slice
+	nums := []int{11, 22, 33, 44, 55}
+	for index, value := range nums {
+		fmt.Printf("Index: %d, Value: %d\n", index, value)
 	}
 
+	// For loop using range over string
 	data := "Hello, World"
-	for index, char := range data{
-		fmt.Printf("Index of Data is %d, and value is %c\n",index,char)
+	for index, char := range data {
+		fmt.Printf("Index: %d, Char: %c\n", index, char)
 	}
 }
